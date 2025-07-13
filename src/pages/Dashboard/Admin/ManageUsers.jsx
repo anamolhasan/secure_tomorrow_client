@@ -52,8 +52,10 @@ const ManageUsers = () => {
                     </th>
                   </tr>
                 </thead>
-                <tbody>
-                  <UserDataRow />
+                 <tbody>
+                  {users.map(user => (
+                    <UserDataRow key={user?._id} user={user} />
+                  ))}
                 </tbody>
               </table>
             </div>
