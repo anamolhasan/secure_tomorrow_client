@@ -14,6 +14,8 @@ import MainLayout from '../layouts/MainLayout'
 import MyInventory from '../pages/Dashboard/Seller/MyInventory'
 import ManageOrders from '../pages/Dashboard/Seller/ManageOrders'
 import MyOrders from '../pages/Dashboard/Customer/MyOrders'
+import AllPolicy from '../pages/AllPolicy/AllPolicy'
+import Blog from '../pages/Blog/Blog'
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +26,14 @@ export const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: '/all-policy',
+        element: <AllPolicy />
+      },
+      {
+        path: '/blog',
+        element: <Blog />
       },
       {
         path: '/plant/:id',

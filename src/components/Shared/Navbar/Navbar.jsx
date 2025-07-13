@@ -1,7 +1,7 @@
 import Container from "../Container";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import avatarImg from "../../../assets/images/placeholder.jpg";
 import logo from "../../../assets/images/logo-flat.png";
@@ -21,6 +21,12 @@ const Navbar = () => {
                 Secure Tomorrow
               </div>
             </Link>
+            {/* middle link */}
+             <div className="space-x-5">
+                <NavLink className='font-bold' to={'/'}>Home</NavLink>
+                <NavLink className='font-bold' to={'/all-policy'}>All Policy</NavLink>
+                <NavLink className='font-bold' to={'/blog'}>Blog</NavLink>
+             </div>
             {/* Dropdown Menu */}
             <div className="relative">
               <div className="flex flex-row items-center gap-3">
