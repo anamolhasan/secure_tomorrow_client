@@ -4,6 +4,7 @@ import axios from "axios";
 import PolicyTable from "./PolicyTable";
 import AddNewPolicy from "./AddNewPolicy";
 import Swal from "sweetalert2";
+import { axiosSecure } from "../../../../hooks/useAxiosSecure";
 
 const AdminPolicyPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -31,11 +32,11 @@ const AdminPolicyPage = () => {
 
   if (result.isConfirmed) {
     try {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/policies/${id}`);
+     await axiosSecure.delete(`${import.meta.env.VITE_API_URL}/policies/${id}`);
       refetch();
       Swal.fire("Deleted!", "The policy has been deleted.", "success");
     } catch (error) {
-      Swal.fire("Error!", "Failed to delete the policy.", error);
+     Swal.fire("Error!", "Failed to delete the policy.", "error");
     }
   }
 };
@@ -59,7 +60,10 @@ const AdminPolicyPage = () => {
 
       {/* ✅ Show Table */}
       {!isLoading && !isError && (
-        <PolicyTable policies={policies} onDelete={handleDeletePolicy} />
+        <PolicyTable 
+        policies={policies} 
+        onDelete={handleDeletePolicy} 
+        />
       )}
 
       {/* ➕ Add New Policy Modal */}
