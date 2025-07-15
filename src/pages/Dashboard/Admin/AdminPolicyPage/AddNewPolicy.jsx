@@ -1,8 +1,8 @@
 import {
-  Description,
   Dialog,
   DialogPanel,
   DialogTitle,
+  Description,
 } from "@headlessui/react";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
@@ -10,29 +10,22 @@ import "react-toastify/dist/ReactToastify.css";
 import useAuth from "../../../../hooks/useAuth";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { imageUpload } from "../../../../api/utils";
-// import useAxiosSecure from "./path-to-utils/useAxiosSecure";
-// import { imageUpload } from "./path-to-utils/imageUpload";
-// import useAuth from "./path-to-utils/useAuth";
 
-const AddNewPolicy = ({ closeModal, modalOpen }) => {
+const AddNewPolicy = ({ closeModal, modalOpen, refetch }) => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
   const [isUploading, setIsUploading] = useState(false);
   const [uploadedImage, setUploadedImage] = useState(null);
-  const [imageUploadError, setImageUploadError] = useState(null);
 
   const handleImageUpload = async (e) => {
     const image = e.target.files[0];
     try {
-      setImageUploadError(null);
       const imageUrl = await imageUpload(image);
       setUploadedImage(imageUrl);
       toast.success("Image uploaded successfully!");
-    } catch (error) {
-      setImageUploadError("Image Upload Failed");
-      toast.error("Image Upload Failed");
-      console.error(error);
+    } catch {
+      toast.error("Image upload failed");
     }
   };
 
@@ -65,12 +58,12 @@ const AddNewPolicy = ({ closeModal, modalOpen }) => {
     };
 
     try {
-      const { data } = await axiosSecure.post(`${import.meta.env.VITE_API_URL}/add-policies`, policyData);
+      await axiosSecure.post(`${import.meta.env.VITE_API_URL}/add-policies`, policyData);
       toast.success("Policy added successfully!");
       form.reset();
       setUploadedImage(null);
       closeModal();
-      console.log(data);
+      refetch(); // ✅ Refresh policy list
     } catch (error) {
       console.error(error);
       toast.error("Failed to add policy. Please try again.");
@@ -191,11 +184,9 @@ const AddNewPolicy = ({ closeModal, modalOpen }) => {
                   accept="image/*"
                   onChange={handleImageUpload}
                   required
-                  className="w-full"
+                  className="w-full max-w-1/2 bg-green-500 py-1 px-2 mt-2"
                 />
-                {imageUploadError && (
-                  <p className="text-red-600 mt-1">{imageUploadError}</p>
-                )}
+               
               </div>
 
               <div className="flex justify-end gap-4 pt-4">

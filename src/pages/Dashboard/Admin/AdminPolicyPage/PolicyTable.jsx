@@ -33,7 +33,7 @@ const PolicyTable = ({ policies, onDelete, onEdit }) => {
               <td className="px-4 py-3">{policy.minAge} - {policy.maxAge}</td>
               <td className="px-4 py-3">{policy.coverageRange}</td>
               <td className="px-4 py-3">{policy.duration}</td>
-              <td className="px-4 py-3">${policy.basePremium}</td>
+              <td className="px-4 py-3">${policy.baseRate}</td>
               <td className="px-4 py-3 flex justify-center gap-4">
                 <button
                   onClick={() => onEdit(policy)}
