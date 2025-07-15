@@ -5,9 +5,12 @@ import PolicyTable from "./PolicyTable";
 import AddNewPolicy from "./AddNewPolicy";
 import Swal from "sweetalert2";
 import { axiosSecure } from "../../../../hooks/useAxiosSecure";
+import EditPolicyModal from "./EditPolicyModal";
 
 const AdminPolicyPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+const [selectedPolicy, setSelectedPolicy] = useState(null);
 
   // 🔁 Fetch policies using TanStack Query
   const { data: policies = [], isLoading, isError, refetch } = useQuery({
@@ -41,6 +44,11 @@ const AdminPolicyPage = () => {
   }
 };
 
+const handleEditPolicy = (policy) => {
+  setSelectedPolicy(policy);
+  setEditModalOpen(true);
+};
+
   return (
     <div className="p-6 max-w-7xl mx-auto">
       {/* 🔘 Header & Add Button */}
@@ -61,8 +69,9 @@ const AdminPolicyPage = () => {
       {/* ✅ Show Table */}
       {!isLoading && !isError && (
         <PolicyTable 
-        policies={policies} 
+        policies={policies}  
         onDelete={handleDeletePolicy} 
+        onEdit={handleEditPolicy}
         />
       )}
 
@@ -71,6 +80,15 @@ const AdminPolicyPage = () => {
         modalOpen={modalOpen}
         closeModal={() => setModalOpen(false)}
         refetch={refetch}
+      />
+
+      {/* Edit Policy Modal */}
+      <EditPolicyModal 
+        modalOpen={editModalOpen}
+        closeModal={() => setEditModalOpen(false)}
+        policy={selectedPolicy}
+        refetch={refetch}
+        axiosSecure={axiosSecure}
       />
     </div>
   );
