@@ -72,13 +72,7 @@ const Sidebar = () => {
             <nav>
               {/*  Menu Items */}
               <CustomerMenu />
-              <SellerMenu />
-
-              <MenuItem
-                icon={BsGraphUp}
-                label='Statistics'
-                address='/dashboard'
-              />
+              <SellerMenu />              
               <AdminMenu />
             </nav>
           </div>

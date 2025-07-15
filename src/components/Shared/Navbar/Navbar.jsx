@@ -26,6 +26,7 @@ const Navbar = () => {
                 <NavLink className='font-bold' to={'/'}>Home</NavLink>
                 <NavLink className='font-bold' to={'/all-policy'}>All Policy</NavLink>
                 <NavLink className='font-bold' to={'/blog'}>Blog</NavLink>
+                <NavLink className='font-bold' to={'/FAQs'}>FAQs</NavLink>
              </div>
             {/* Dropdown Menu */}
             <div className="relative">

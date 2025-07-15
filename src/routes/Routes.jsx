@@ -6,7 +6,7 @@ import SignUp from '../pages/SignUp/SignUp'
 import PlantDetails from '../pages/PlantDetails/PlantDetails'
 import PrivateRoute from './PrivateRoute'
 import DashboardLayout from '../layouts/DashboardLayout'
-import AddPlant from '../pages/Dashboard/Seller/AddPlant'
+
 import ManageUsers from '../pages/Dashboard/Admin/ManageUsers'
 import Profile from '../pages/Dashboard/Common/Profile'
 import Statistics from '../pages/Dashboard/Common/Statistics'
@@ -16,6 +16,9 @@ import ManageOrders from '../pages/Dashboard/Seller/ManageOrders'
 import MyOrders from '../pages/Dashboard/Customer/MyOrders'
 import AllPolicy from '../pages/AllPolicy/AllPolicy'
 import Blog from '../pages/Blog/Blog'
+import AdminPolicyPage from '../pages/Dashboard/Admin/AdminPolicyPage/AdminPolicyPage'
+// import AdminPolicyPage from '../pages/Dashboard/Admin/AdminPolicyPage'
+
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +36,10 @@ export const router = createBrowserRouter([
       },
       {
         path: '/blog',
+        element: <Blog />
+      },
+      {
+        path: '/FAQs',
         element: <Blog />
       },
       {
@@ -60,13 +67,21 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'add-plant',
+        path: 'adminPolicyPage',
         element: (
           <PrivateRoute>
-            <AddPlant />
+            <AdminPolicyPage />
           </PrivateRoute>
         ),
       },
+      // {
+      //   path: 'manage-policies',
+      //   element: (
+      //     <PrivateRoute>
+      //       <ManagePolicies />
+      //     </PrivateRoute>
+      //   ),
+      // },
       {
         path: 'my-inventory',
         element: (

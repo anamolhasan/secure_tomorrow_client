@@ -53,7 +53,7 @@ const ManageUsers = () => {
                   </tr>
                 </thead>
                  <tbody>
-                  {users.map(user => (
+                  {users?.map(user => (
                     <UserDataRow key={user?._id} user={user} />
                   ))}
                 </tbody>

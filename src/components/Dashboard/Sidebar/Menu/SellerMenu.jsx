@@ -4,12 +4,16 @@ import MenuItem from './MenuItem'
 const SellerMenu = () => {
   return (
     <>
-      <MenuItem
+      {/* <MenuItem
         icon={BsFillHouseAddFill}
         label='Add Plant'
         address='add-plant'
+      /> */}
+      <MenuItem 
+      icon={MdHomeWork} 
+      label='My Inventory' 
+      address='my-inventory' 
       />
-      <MenuItem icon={MdHomeWork} label='My Inventory' address='my-inventory' />
       <MenuItem
         icon={MdOutlineManageHistory}
         label='Manage Orders'
