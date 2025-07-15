@@ -7,8 +7,8 @@ import AddNewPolicy from "./AddNewPolicy";
 const AdminPolicyPage = () => {
   const [policies, setPolicies] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
-  const [editingPolicy, setEditingPolicy] = useState(null); // for edit
 
+console.log(policies)
   // Load all policies
   useEffect(() => {
     axios.get(`${import.meta.env.VITE_API_URL}/policies`).then((res) => {
@@ -20,11 +20,7 @@ const AdminPolicyPage = () => {
     setModalOpen(false)
   };
 
-  const handleEditPolicy = (updated) => {
-    setPolicies((prev) =>
-      prev.map((p) => (p._id === updated._id ? updated : p))
-    );
-  };
+
 
   const handleDeletePolicy = async (id) => {
     const confirm = window.confirm("Are you sure?");
@@ -39,23 +35,20 @@ const AdminPolicyPage = () => {
         <h2 className="text-2xl font-bold">Manage Policies</h2>
         <button
           onClick={() => {
-            setEditingPolicy(null);
+         
             setModalOpen(true);
           }}
-          className="bg-blue-600 text-white px-4 py-2 rounded"
+          className="bg-blue-600 text-white px-4 py-2 rounded cursor-pointer"
         >
           + Add New Policy
         </button>
       </div>
 
       <PolicyTable
-        policies={policies}
-        onEdit={(policy) => {
-          setEditingPolicy(policy);
-          setModalOpen(true);
-        }}
-        onDelete={handleDeletePolicy}
-      />
+  policies={policies}
+  onDelete={handleDeletePolicy}
+  // onEdit={handleEditPolicy}
+/>
 
      <AddNewPolicy closeModal={closeModal} modalOpen={modalOpen}/>
     </div>
