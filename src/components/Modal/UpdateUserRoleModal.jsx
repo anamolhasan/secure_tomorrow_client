@@ -72,7 +72,7 @@ const UpdateUserRoleModal = ({ isOpen, setIsOpen, role, userEmail }) => {
                     id=''
                   >
                     <option value='customer'>Customer</option>
-                    <option value='seller'>Seller</option>
+                    <option value='agent'>Agent</option>
                     <option value='admin'>Admin</option>
                   </select>
                 </div>
