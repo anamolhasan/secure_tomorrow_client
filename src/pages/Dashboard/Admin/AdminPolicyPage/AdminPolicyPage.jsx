@@ -69,7 +69,7 @@ const handleEditPolicy = (policy) => {
       {/* ✅ Show Table */}
       {!isLoading && !isError && (
         <PolicyTable 
-        policies={policies}  
+        policies={Array.isArray(policies?.policies) ? policies.policies : []} 
         onDelete={handleDeletePolicy} 
         onEdit={handleEditPolicy}
         />

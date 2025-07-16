@@ -4,15 +4,15 @@ import Button from '../../components/Shared/Button/Button'
 import PurchaseModal from '../../components/Modal/PurchaseModal'
 import { useState } from 'react'
 
-const PlantDetails = () => {
-  let [isOpen, setIsOpen] = useState(false)
+const PolicesDetails = () => {
+    let [isOpen, setIsOpen] = useState(false)
 
   const closeModal = () => {
     setIsOpen(false)
   }
-
+ 
   return (
-    <Container>
+     <Container>
       <div className='mx-auto flex flex-col lg:flex-row justify-between w-full gap-12'>
         {/* Header */}
         <div className='flex flex-col gap-6 flex-1'>
@@ -92,4 +92,4 @@ const PlantDetails = () => {
   )
 }
 
-export default PlantDetails
+export default PolicesDetails

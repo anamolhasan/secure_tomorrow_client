@@ -1,9 +1,9 @@
-import Plants from '../../components/Home/Plants'
+
 
 const Home = () => {
   return (
     <div>
-      <Plants />
+      <h2 className="font-bold  text-center text-4xl">This is Home Page</h2>
     </div>
   )
 }

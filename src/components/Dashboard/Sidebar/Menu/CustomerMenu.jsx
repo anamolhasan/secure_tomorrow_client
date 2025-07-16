@@ -12,7 +12,7 @@ const CustomerMenu = () => {
 
   return (
     <>
-      <MenuItem icon={BsFingerprint} label='My Orders' address='my-orders' />
+      <MenuItem icon={BsFingerprint} label='My Orders' address='manage-orders' />
 
       <div
         onClick={() => setIsOpen(true)}

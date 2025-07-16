@@ -3,7 +3,7 @@ import Home from '../pages/Home/Home'
 import ErrorPage from '../pages/ErrorPage'
 import Login from '../pages/Login/Login'
 import SignUp from '../pages/SignUp/SignUp'
-import PlantDetails from '../pages/PlantDetails/PlantDetails'
+
 import PrivateRoute from './PrivateRoute'
 import DashboardLayout from '../layouts/DashboardLayout'
 
@@ -17,6 +17,8 @@ import MyOrders from '../pages/Dashboard/Customer/MyOrders'
 import AllPolicy from '../pages/AllPolicy/AllPolicy'
 import Blog from '../pages/Blog/Blog'
 import AdminPolicyPage from '../pages/Dashboard/Admin/AdminPolicyPage/AdminPolicyPage'
+import ManageApplications from '../pages/Dashboard/Admin/ManageApplications/ManageApplications'
+import PolicesDetails from '../pages/PolicyDetails/PolicesDetails'
 // import AdminPolicyPage from '../pages/Dashboard/Admin/AdminPolicyPage'
 
 
@@ -32,7 +34,12 @@ export const router = createBrowserRouter([
       },
       {
         path: '/all-policy',
-        element: <AllPolicy />
+        element: <AllPolicy />,
+        // loader: () => fetch(`${import.meta.env.VITE_API_URL}/policies`)
+      },
+      {
+        path: '/policy/:id',
+        element: <PolicesDetails />
       },
       {
         path: '/blog',
@@ -42,10 +49,10 @@ export const router = createBrowserRouter([
         path: '/FAQs',
         element: <Blog />
       },
-      {
-        path: '/plant/:id',
-        element: <PlantDetails />,
-      },
+      // {
+      //   path: '/plant/:id',
+      //   element: <PlantDetails />,
+      // },
     ],
   },
   { path: '/login', element: <Login /> },
@@ -74,14 +81,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      // {
-      //   path: 'manage-policies',
-      //   element: (
-      //     <PrivateRoute>
-      //       <ManagePolicies />
-      //     </PrivateRoute>
-      //   ),
-      // },
+     
       {
         path: 'my-inventory',
         element: (
@@ -107,10 +107,10 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'my-orders',
+        path: 'manage-application',
         element: (
           <PrivateRoute>
-            <MyOrders />
+            <ManageApplications />
           </PrivateRoute>
         ),
       },
