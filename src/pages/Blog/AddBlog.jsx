@@ -1,11 +1,12 @@
 import { useForm } from "react-hook-form";
-import { useContext } from "react";
-import { AuthContext } from "../providers/AuthProvider";
+// import { useContext } from "react";
+// import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 const AddBlog = () => {
   const { register, handleSubmit, reset } = useForm();
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth()
 
   const onSubmit = async (data) => {
     const blogData = {

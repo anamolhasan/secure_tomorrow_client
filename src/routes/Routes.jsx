@@ -1,74 +1,81 @@
-import { createBrowserRouter } from 'react-router'
-import Home from '../pages/Home/Home'
-import ErrorPage from '../pages/ErrorPage'
-import Login from '../pages/Login/Login'
-import SignUp from '../pages/SignUp/SignUp'
+import { createBrowserRouter } from "react-router";
+import Home from "../pages/Home/Home";
+import ErrorPage from "../pages/ErrorPage";
+import Login from "../pages/Login/Login";
+import SignUp from "../pages/SignUp/SignUp";
 
-import PrivateRoute from './PrivateRoute'
-import DashboardLayout from '../layouts/DashboardLayout'
+import PrivateRoute from "./PrivateRoute";
+import DashboardLayout from "../layouts/DashboardLayout";
 
-import ManageUsers from '../pages/Dashboard/Admin/ManageUsers'
-import Profile from '../pages/Dashboard/Common/Profile'
-import Statistics from '../pages/Dashboard/Common/Statistics'
-import MainLayout from '../layouts/MainLayout'
-import MyInventory from '../pages/Dashboard/Seller/MyInventory'
-import ManageOrders from '../pages/Dashboard/Seller/ManageOrders'
-import MyOrders from '../pages/Dashboard/Customer/MyOrders'
-import AllPolicy from '../pages/AllPolicy/AllPolicy'
-import Blog from '../pages/Blog/Blog'
-import AdminPolicyPage from '../pages/Dashboard/Admin/AdminPolicyPage/AdminPolicyPage'
-import ManageApplications from '../pages/Dashboard/Admin/ManageApplications/ManageApplications'
-import PolicesDetails from '../pages/PolicyDetails/PolicesDetails'
-import QuotePage from '../pages/Dashboard/Customer/QuotePage'
-import ApplicationForm from '../pages/Dashboard/Customer/ApplicationForm'
+import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
+import Profile from "../pages/Dashboard/Common/Profile";
+import Statistics from "../pages/Dashboard/Common/Statistics";
+import MainLayout from "../layouts/MainLayout";
+import MyInventory from "../pages/Dashboard/Seller/MyInventory";
+import ManageOrders from "../pages/Dashboard/Seller/ManageOrders";
+import MyOrders from "../pages/Dashboard/Customer/MyOrders";
+import AllPolicy from "../pages/AllPolicy/AllPolicy";
+// import Blog from '../pages/Blog/Blog'
+import AdminPolicyPage from "../pages/Dashboard/Admin/AdminPolicyPage/AdminPolicyPage";
+import ManageApplications from "../pages/Dashboard/Admin/ManageApplications/ManageApplications";
+import PolicesDetails from "../pages/PolicyDetails/PolicesDetails";
+import QuotePage from "../pages/Dashboard/Customer/QuotePage";
+import ApplicationForm from "../pages/Dashboard/Customer/ApplicationForm";
+import Blogs from "../pages/Blog/Blogs";
+import BlogDetails from "../pages/Blog/BlogDetails";
+import AddBlog from "../pages/Blog/AddBlog";
+import EditBlog from "../pages/Blog/EditBlog";
 // import AdminPolicyPage from '../pages/Dashboard/Admin/AdminPolicyPage'
-
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <MainLayout />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: '/',
+        path: "/",
         element: <Home />,
       },
       {
-        path: '/all-policy',
+        path: "/all-policy",
         element: <AllPolicy />,
         // loader: () => fetch(`${import.meta.env.VITE_API_URL}/policies`)
       },
       {
-        path: '/policy/:id',
-        element: <PolicesDetails />
+        path: "/policy/:id",
+        element: <PolicesDetails />,
       },
       {
-        path: '/blog',
-        element: <Blog />
+        path: "/blog",
+        element: <Blogs />,
       },
       {
-        path: '/get-quote/:id',
-        element: <QuotePage />
+        path: "/blogs/:id",
+        element: <BlogDetails />,
       },
       {
-        path: '/application-form',
-        element: <ApplicationForm />
+        path: "/get-quote/:id",
+        element: <QuotePage />,
       },
       {
-        path: '/FAQs',
-        element: <Blog />
+        path: "/application-form",
+        element: <ApplicationForm />,
       },
+      // {
+      //   path: '/FAQs',
+      //   element: <Blog />
+      // },
       // {
       //   path: '/plant/:id',
       //   element: <PlantDetails />,
       // },
     ],
   },
-  { path: '/login', element: <Login /> },
-  { path: '/signup', element: <SignUp /> },
+  { path: "/login", element: <Login /> },
+  { path: "/signup", element: <SignUp /> },
   {
-    path: '/dashboard',
+    path: "/dashboard",
     element: (
       <PrivateRoute>
         <DashboardLayout />
@@ -84,16 +91,16 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'adminPolicyPage',
+        path: "adminPolicyPage",
         element: (
           <PrivateRoute>
             <AdminPolicyPage />
           </PrivateRoute>
         ),
       },
-     
+
       {
-        path: 'my-inventory',
+        path: "my-inventory",
         element: (
           <PrivateRoute>
             <MyInventory />
@@ -101,7 +108,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'manage-users',
+        path: "manage-users",
         element: (
           <PrivateRoute>
             <ManageUsers />
@@ -109,7 +116,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'profile',
+        path: "profile",
         element: (
           <PrivateRoute>
             <Profile />
@@ -117,7 +124,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'manage-application',
+        path: "manage-application",
         element: (
           <PrivateRoute>
             <ManageApplications />
@@ -125,9 +132,27 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'manage-orders',
+        path: "add-blog",
+        element: (
+          <PrivateRoute>
+            <AddBlog />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "edit-blog/:id",
+        element: (
+          <PrivateRoute>
+            <EditBlog />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/blogs/${params.id}`),
+      },
+      {
+        path: "manage-orders",
         element: <ManageOrders />,
       },
     ],
   },
-])
+]);

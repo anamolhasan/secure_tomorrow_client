@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 
 const BlogDetails = () => {
   const { id } = useParams();
@@ -7,7 +7,7 @@ const BlogDetails = () => {
 
   useEffect(() => {
     const fetchBlog = async () => {
-      const res = await fetch(`http://localhost:3000/blogs/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/blogs/${id}`, {
         method: "PATCH", // increment visit
       });
       const data = await res.json();
