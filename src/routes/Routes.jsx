@@ -19,6 +19,8 @@ import Blog from '../pages/Blog/Blog'
 import AdminPolicyPage from '../pages/Dashboard/Admin/AdminPolicyPage/AdminPolicyPage'
 import ManageApplications from '../pages/Dashboard/Admin/ManageApplications/ManageApplications'
 import PolicesDetails from '../pages/PolicyDetails/PolicesDetails'
+import QuotePage from '../pages/Dashboard/Customer/QuotePage'
+import ApplicationForm from '../pages/Dashboard/Customer/ApplicationForm'
 // import AdminPolicyPage from '../pages/Dashboard/Admin/AdminPolicyPage'
 
 
@@ -44,6 +46,14 @@ export const router = createBrowserRouter([
       {
         path: '/blog',
         element: <Blog />
+      },
+      {
+        path: '/get-quote/:id',
+        element: <QuotePage />
+      },
+      {
+        path: '/application-form',
+        element: <ApplicationForm />
       },
       {
         path: '/FAQs',

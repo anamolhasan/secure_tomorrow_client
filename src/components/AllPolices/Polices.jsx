@@ -11,7 +11,7 @@ const Polices = () => {
   const [category, setCategory] = useState("");
   const [page, setPage] = useState(1);
   const limit = 9;
-
+ 
   const {
     data,
     isLoading,

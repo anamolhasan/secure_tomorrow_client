@@ -1,8 +1,9 @@
 import { Link } from 'react-router'
 
 const Card = ({policy}) => {
-  console.log(policy)
+  // console.log(policy)
   const {image, title, description, _id, category} = policy
+  console.log(_id)
   return (
     <Link
       to={`/policy/${_id}`}
