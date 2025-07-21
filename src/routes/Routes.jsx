@@ -25,6 +25,7 @@ import Blogs from "../pages/Blog/Blogs";
 import BlogDetails from "../pages/Blog/BlogDetails";
 import AddBlog from "../pages/Blog/AddBlog";
 import EditBlog from "../pages/Blog/EditBlog";
+import ManageBlogs from "../pages/Blog/ManageBlogs";
 // import AdminPolicyPage from '../pages/Dashboard/Admin/AdminPolicyPage'
 
 export const router = createBrowserRouter([
@@ -151,7 +152,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "manage-orders",
-        element: <ManageOrders />,
+        element: <ManageBlogs />,
       },
     ],
   },

@@ -8,7 +8,7 @@ const EditBlog = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (updatedData) => {
-    const res = await fetch(`http://localhost:3000/blogs/${blog._id}`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/blogs/${blog._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

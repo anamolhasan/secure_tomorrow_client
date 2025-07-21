@@ -14,6 +14,22 @@ const SellerMenu = () => {
       label='My Inventory' 
       address='my-inventory' 
       />
+      <MenuItem 
+      icon={MdHomeWork} 
+      label='add-blog' 
+      address='add-blog' 
+      />
+      <MenuItem 
+      icon={MdHomeWork} 
+      label='edit-blog' 
+      address='edit-blog' 
+      />
+
+      <MenuItem 
+  icon={MdOutlineManageHistory} 
+  label="Manage Blogs" 
+  address="manage-blogs" 
+/>
       {/* <MenuItem
         icon={MdOutlineManageHistory}
         label='Manage Orders'
