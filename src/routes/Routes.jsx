@@ -151,9 +151,9 @@ export const router = createBrowserRouter([
           fetch(`${import.meta.env.VITE_API_URL}/blogs/${params.id}`),
       },
       {
-        path: "manage-orders",
+        path: "manage-blogs",
         element: <ManageBlogs />,
       },
     ],
   },
-]);
+]); 

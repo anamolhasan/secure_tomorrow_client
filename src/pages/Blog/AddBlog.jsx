@@ -18,6 +18,7 @@ const AddBlog = () => {
         email: user.email,
         photo: user.photoURL,
       },
+        authorEmail: user.email,
       date: new Date().toLocaleDateString(),
       visits: 0,
     };
