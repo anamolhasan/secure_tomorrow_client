@@ -12,8 +12,8 @@ import Profile from "../pages/Dashboard/Common/Profile";
 import Statistics from "../pages/Dashboard/Common/Statistics";
 import MainLayout from "../layouts/MainLayout";
 import MyInventory from "../pages/Dashboard/Seller/MyInventory";
-import ManageOrders from "../pages/Dashboard/Seller/ManageOrders";
-import MyOrders from "../pages/Dashboard/Customer/MyOrders";
+// import ManageOrders from "../pages/Dashboard/Seller/ManageOrders";
+// import MyOrders from "../pages/Dashboard/Customer/MyOrders";
 import AllPolicy from "../pages/AllPolicy/AllPolicy";
 // import Blog from '../pages/Blog/Blog'
 import AdminPolicyPage from "../pages/Dashboard/Admin/AdminPolicyPage/AdminPolicyPage";

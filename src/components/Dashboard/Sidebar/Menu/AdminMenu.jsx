@@ -6,16 +6,21 @@ import { MdOutlineManageHistory } from "react-icons/md";
 const AdminMenu = () => {
   return (
     <>
-    <MenuItem
+      <MenuItem
         icon={MdOutlineManageHistory}
-        label='Manage Application'
-        address='manage-application'
+        label="Manage Application"
+        address="manage-application"
       />
       <MenuItem icon={BsGraphUp} label="Statistics" address="" />
       <MenuItem
         icon={BsFillHouseAddFill}
         label="Manage Polices"
         address="adminPolicyPage"
+      />
+      <MenuItem
+        icon={MdOutlineManageHistory}
+        label="Manage Blogs"
+        address="manage-blogs"
       />
       {/* <MenuItem
         icon={FaUserCog}
