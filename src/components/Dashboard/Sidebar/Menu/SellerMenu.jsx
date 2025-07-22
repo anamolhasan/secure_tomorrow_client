@@ -18,6 +18,16 @@ const SellerMenu = () => {
         label="Manage Blogs"
         address="manage-blogs"
       />
+      <MenuItem
+        icon={MdOutlineManageHistory}
+        label="Assigned Customers"
+        address="Assigned-customers"
+      />
+      <MenuItem
+        icon={MdOutlineManageHistory}
+        label="Policy Clearance"
+        address="Policy-clearance"
+      />
       {/* <MenuItem
         icon={MdOutlineManageHistory}
         label='Manage Orders'

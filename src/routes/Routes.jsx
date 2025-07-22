@@ -26,6 +26,10 @@ import BlogDetails from "../pages/Blog/BlogDetails";
 import AddBlog from "../pages/Blog/AddBlog";
 import EditBlog from "../pages/Blog/EditBlog";
 import ManageBlogs from "../pages/Blog/ManageBlogs";
+import AssignedCustomers from "../pages/AssignedCustomers/AssignedCustomers";
+import PolicyClearance from "../pages/PolicyClearance/PolicyClearance.";
+import MyPolicies from "../pages/MyPolicies/MyPolicies";
+import PaymentStatus from "../pages/PaymentStatus/PaymentStatus";
 // import AdminPolicyPage from '../pages/Dashboard/Admin/AdminPolicyPage'
 
 export const router = createBrowserRouter([
@@ -153,6 +157,22 @@ export const router = createBrowserRouter([
       {
         path: "manage-blogs",
         element: <ManageBlogs />,
+      },
+      {
+        path: "Assigned-customers",
+        element: <AssignedCustomers />
+      },
+      {
+        path: "Policy-clearance",
+        element: <PolicyClearance />
+      },
+      {
+        path: "my-policy",
+        element: <MyPolicies />
+      },
+      {
+        path: "payment-status",
+        element: <PaymentStatus />
       },
     ],
   },
