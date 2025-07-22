@@ -5,29 +5,31 @@ import { Link, NavLink } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import avatarImg from "../../../assets/images/placeholder.jpg";
 // import logo from "../../../assets/images/logo-flat.png";
+
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="fixed w-full bg-white z-10 shadow-sm">
-      <div className="py-4 border-b-[1px]">
+    <div className="fixed w-full z-10 shadow-sm bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100">
+      <div className="py-4 border-b-[1px] border-purple-200">
         <Container>
-          <div className="flex flex-row  items-center justify-between gap-3 md:gap-0">
+          <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
             {/* Logo */}
-            <Link to="/" className="text-3xl font-bold ">
-              {/* <img src={logo} alt='logo' width='100' height='100' /> */}
-              <div className="text-blue-800">
-                Secure Tomorrow
+            <Link to="/" className="text-3xl font-bold">
+              <div className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 font-bold text-2xl">
+                SecureTomorrow
               </div>
             </Link>
-            {/* middle link */}
-             <div className="space-x-5">
-                <NavLink className='font-bold' to={'/'}>Home</NavLink>
-                <NavLink className='font-bold' to={'/all-policy'}>All Policy</NavLink>
-                <NavLink className='font-bold' to={'/blog'}>Blog</NavLink>
-                <NavLink className='font-bold' to={'/FAQs'}>FAQs</NavLink>
-             </div>
+
+            {/* Middle Links */}
+            <div className="space-x-5">
+              <NavLink className="font-bold" to={"/"}>Home</NavLink>
+              <NavLink className="font-bold" to={"/all-policy"}>All Policy</NavLink>
+              <NavLink className="font-bold" to={"/blog"}>Blog</NavLink>
+           
+            </div>
+
             {/* Dropdown Menu */}
             <div className="relative">
               <div className="flex flex-row items-center gap-3">
@@ -38,7 +40,6 @@ const Navbar = () => {
                 >
                   <AiOutlineMenu />
                   <div className="hidden md:block">
-                    {/* Avatar */}
                     <img
                       className="rounded-full"
                       referrerPolicy="no-referrer"
@@ -50,6 +51,7 @@ const Navbar = () => {
                   </div>
                 </div>
               </div>
+
               {isOpen && (
                 <div className="absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm">
                   <div className="flex flex-col cursor-pointer">
