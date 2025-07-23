@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import BlogCard from './BlogCard';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet';
 
 const Blogs = () => {
   const axiosSecure = useAxiosSecure();
@@ -12,10 +13,14 @@ const Blogs = () => {
       return res.data;
     },
   });
-console.log(blogs)
+// console.log(blogs)
   if (isLoading) return <p className="text-center py-10">Loading...</p>;
 
   return (
+   <>
+    <Helmet>
+        <title>Blogs</title>
+      </Helmet>
     <div className="max-w-6xl mx-auto py-10 px-4">
       <h1 className="text-4xl font-bold text-center mb-10">All Blogs</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -24,6 +29,7 @@ console.log(blogs)
         ))}
       </div>
     </div>
+   </>
   );
 };
 

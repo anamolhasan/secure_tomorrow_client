@@ -16,6 +16,8 @@ const CustomerMenu = () => {
         
         <MenuItem icon={BsFingerprint} label='My Policies' address='my-policy' />
         <MenuItem icon={BsFingerprint} label='Payment Status' address='payment-status' />
+        <MenuItem icon={BsFingerprint} label='Claim Request' address='ClaimRequestPage' />
+        {/* <MenuItem icon={BsFingerprint} label='Payment Page' address='payment-page' /> */}
       <div
         onClick={() => setIsOpen(true)}
         className='flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform text-gray-600  hover:bg-gray-300   hover:text-gray-700 cursor-pointer'

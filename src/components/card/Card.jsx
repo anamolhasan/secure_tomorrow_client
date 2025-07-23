@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 
 const Card = ({ policy }) => {
   const { image, title, description, _id, category } = policy;
-
+// console.log(category)
   return (
     <div className="col-span-1 group rounded-xl shadow-lg overflow-hidden border hover:shadow-2xl transition duration-300 bg-white">
 

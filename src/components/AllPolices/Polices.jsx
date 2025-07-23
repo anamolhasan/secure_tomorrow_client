@@ -15,17 +15,20 @@ const Polices = () => {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['policies', category, page, keyword],
     queryFn: async () => {
-      const res = await axiosSecure.get(
-        `/policies?category=${category}&page=${page}&limit=${limit}&keyword=${keyword}`
-      );
+      // ✅ query string ডাইনামিকভাবে তৈরি
+      let query = `/policies?page=${page}&limit=${limit}`;
+      if (category) query += `&category=${category}`;
+      if (keyword) query += `&keyword=${keyword}`;
+    
+      const res = await axiosSecure.get(query);
       return res.data;
     },
-    keepPreviousData: true, // ✅ smooth pagination
+    keepPreviousData: true,
   });
 
   const handleSearch = () => {
-    setKeyword(searchTerm);
-    setPage(1); // Reset to page 1 on new search
+    setKeyword(searchTerm.trim());
+    setPage(1);
   };
 
   const handleKeyDown = (e) => {
@@ -50,7 +53,8 @@ const Polices = () => {
           className="p-2 border rounded w-full md:w-1/4"
         >
           <option value="">All Categories</option>
-          <option value="Term">Term Life</option>
+          <option value="Term Life">Term Life</option>
+          <option value="Whole Life">Whole Life</option>
           <option value="Senior">Senior Plan</option>
           <option value="Child">Child Plan</option>
         </select>

@@ -30,6 +30,8 @@ import AssignedCustomers from "../pages/AssignedCustomers/AssignedCustomers";
 import PolicyClearance from "../pages/PolicyClearance/PolicyClearance.";
 import MyPolicies from "../pages/MyPolicies/MyPolicies";
 import PaymentStatus from "../pages/PaymentStatus/PaymentStatus";
+import ClaimRequestPage from "../pages/Dashboard/Customer/ClaimRequestPage";
+// import PaymentPage from "../pages/PaymentStatus/PaymentPage";
 // import AdminPolicyPage from '../pages/Dashboard/Admin/AdminPolicyPage'
 
 export const router = createBrowserRouter([
@@ -174,6 +176,14 @@ export const router = createBrowserRouter([
         path: "payment-status",
         element: <PaymentStatus />
       },
+      {
+        path: "ClaimRequestPage",
+        element: <ClaimRequestPage />
+      },
+      // {
+      //   path: "payment-page",
+      //   element: <PaymentPage />
+      // },
     ],
   },
 ]); 

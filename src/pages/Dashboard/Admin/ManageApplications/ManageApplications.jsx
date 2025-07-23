@@ -61,6 +61,7 @@ const ManageApplications = () => {
   };
 
   return (
+   <>
     <div className="p-4">
       <h2 className="text-2xl font-semibold mb-4">Manage Applications</h2>
       <div className="overflow-x-auto">
@@ -162,6 +163,8 @@ const ManageApplications = () => {
         </div>
       )}
     </div>
+   
+   </>
   );
 };
 
