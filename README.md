@@ -1,12 +1,57 @@
-# React + Vite
+# 🛡️ Secure Tomorrow – Life Insurance Management Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack MERN web application designed to streamline life insurance policy management. Includes role-based dashboards, policy booking, claims, Stripe integration, and an admin control panel.
 
-Currently, two official plugins are available:
+## 🔗 Live Website
+[👉 Visit Live](https://your-deployed-site-url.com)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+### 👤 Authentication
+- Firebase Auth (Email/Password, Google)
+- Role-based login: Admin, Agent, Customer
+- JWT-based secure API calls
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 🧭 Navigation
+- Responsive Navbar & Footer
+- Protected routes for dashboard access
+- 404 Page Not Found
+
+### 🏢 Role-based Dashboards
+- **Admin**:
+  - Manage Policies, Users, Blogs, Applications, Claims, Transactions
+  - Assign agents, Approve/Reject applications
+- **Agent**:
+  - View assigned applications
+  - Approve or reject claim requests
+- **Customer**:
+  - View available policies
+  - Purchase via Stripe
+  - Request for claims
+
+### 💳 Stripe Integration
+- Seamless payment system
+- Updates policy status on success
+- Stores transaction info in database
+
+### 📦 Policy Management
+- CRUD for Policies (Admin)
+- Policy purchase with auto-filled info
+- Application status handling
+- Claim request feature with PDF/image upload
+
+### 📈 Tech Stack
+- **Frontend**: React 19, React Router v7, Tailwind CSS 4, DaisyUI
+- **Backend**: Node.js, Express.js, MongoDB, Stripe
+- **State Management**: React Query
+- **Notifications**: SweetAlert2, React Toastify
+- **Dev Tools**: Vite, ESLint
+
+### 🎯 UX/UI Expectations Fulfilled
+- No `Lorem Ipsum` anywhere
+- Used SweetAlert2 / Toast for all interactions
+- Dynamic page titles with `react-helmet-async`
+- Fully responsive across devices
+
+## 📁 Folder Structure
+
