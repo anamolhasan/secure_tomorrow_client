@@ -4,6 +4,7 @@ import LatestBlogs from "./LatestBlogs"
 import NewsletterForm from "./NewsletterForm"
 import PopularPolicies from "./PopularPolicies"
 import ReviewsCarousel from "./ReviewsCarousel"
+import FeaturedAgents from "./FeaturedAgents"
 
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
       <ReviewsCarousel />
      <LatestBlogs />
      <NewsletterForm />
+     <FeaturedAgents />
     </div>
   )
 }
