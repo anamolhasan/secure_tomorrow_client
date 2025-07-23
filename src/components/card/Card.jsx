@@ -26,7 +26,7 @@ const Card = ({ policy }) => {
         </p>
 
         <div className="flex items-center justify-between pt-3">
-          <span className="text-sm font-semibold text-green-600">Booking: 15</span>
+          <span className="text-sm font-semibold text-green-600"></span>
           <Link
             to={`/policy/${_id}`}
             className="text-sm text-blue-600 font-medium hover:underline"
