@@ -5,6 +5,8 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
+import dayjs from "dayjs";
 
 const PaymentForm = ({ close, policy }) => {
   const stripe = useStripe();
@@ -15,7 +17,7 @@ const PaymentForm = ({ close, policy }) => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
- const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
   setLoading(true);
   setError(null);
@@ -39,13 +41,36 @@ const PaymentForm = ({ close, policy }) => {
       setError(error.message);
     } else if (paymentIntent.status === "succeeded") {
       setSuccess(true);
+      toast.success("✅ Payment Successful!");
+
+      const paymentInfo = {
+        paymentStatus: "Paid",
+        transactionId: paymentIntent.id,
+        paymentDate: dayjs().format("YYYY-MM-DD HH:mm:ss"), // দিন ও সময় সহ
+        status: "Active", // এখন এই পলিসি Active হয়ে যাবে
+      };
+
+      const policyId = policy._id;
+
+      axiosSecure.patch(`/applications/payment/${policyId}`, paymentInfo)
+        .then(res => {
+          if (res.data.modifiedCount > 0) {
+            toast.success("🎉 Policy status updated successfully!");
+          }
+        })
+        .catch(err => {
+          console.error("❌ DB update failed:", err);
+          toast.error("Failed to update policy status in DB.");
+        });
     }
   } catch (err) {
+    console.error(err);
     setError("Payment failed");
   }
 
   setLoading(false);
 };
+
 
 
   if (success)
@@ -60,6 +85,9 @@ const PaymentForm = ({ close, policy }) => {
         </button>
       </div>
     );
+
+
+
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
