@@ -87,7 +87,7 @@ const Polices = () => {
           ))}
         </div>
       )}
-
+ 
       {/* Pagination */}
       {data?.totalPages > 1 && (
         <div className="flex justify-center mt-6 gap-2 flex-wrap">

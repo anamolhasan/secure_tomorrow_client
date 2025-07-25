@@ -14,12 +14,11 @@ const PaymentStatus = () => {
       return res.data;
     },
   });
-
+console.log(policies)
   if (isLoading) return <p className="text-center mt-10">Loading approved policies...</p>;
   if (isError) return <p className="text-center mt-10 text-red-500">Failed to load policies.</p>;
 
   const handlePay = (policyId) => {
-    // Payment পেজে Redirect, প্রয়োজনমত URL adjust করুন
     navigate(`/payment/${policyId}`);
   };
 
@@ -40,32 +39,33 @@ const PaymentStatus = () => {
           </tr>
         </thead>
         <tbody>
-          {policies.map((policy) => (
-            <tr key={policy._id} className="hover:bg-gray-50">
-              <td className="border border-gray-300 p-2">{policy.policyName || "N/A"}</td>
-              <td className="border border-gray-300 p-2">{policy.premium || "-"}</td>
-              <td className="border border-gray-300 p-2">{policy.paymentFrequency || "Monthly"}</td>
-              <td className="border border-gray-300 p-2">
-                <span
-                  className={`px-2 py-1 rounded text-white ${
-                    policy.paymentStatus === "Paid" ? "bg-green-600" : "bg-red-600"
-                  }`}
-                >
-                  {policy.paymentStatus || "Due"}
-                </span>
-              </td>
-              <td className="border border-gray-300 p-2">
-                {policy.paymentStatus === "Due" && (
-                  <button
-                    onClick={() => handlePay(policy._id)}
-                    className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700"
-                  >
-                    Pay
-                  </button>
-                )}
-              </td>
-            </tr>
-          ))}
+          {policies.map((policy) => {
+            const status = policy.paymentStatus || "Due";
+            const statusColor = status === "Paid" ? "bg-green-600" : "bg-red-600";
+
+            return (
+              <tr key={policy._id} className="hover:bg-gray-50">
+                <td className="border border-gray-300 p-2">{policy.policyName || "N/A"}</td>
+                <td className="border border-gray-300 p-2">{policy.monthly || "-"}</td>
+                <td className="border border-gray-300 p-2">{policy.paymentFrequency || "Monthly"}</td>
+                <td className="border border-gray-300 p-2">
+                  <span className={`px-2 py-1 rounded text-white ${statusColor}`}>
+                    {status}
+                  </span>
+                </td>
+                <td className="border border-gray-300 p-2">
+                  {status === "Due" && (
+                    <button
+                      onClick={() => handlePay(policy._id)}
+                      className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700"
+                    >
+                      Pay
+                    </button>
+                  )}
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

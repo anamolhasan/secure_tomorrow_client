@@ -17,6 +17,7 @@ const healthOptions = [
 const ApplicationForm = () => {
   const { user } = useAuth();
   const { state } = useLocation();
+  const { form, quote } = state || {};
   const axiosSecure = useAxiosSecure();
 
   const {
@@ -26,8 +27,8 @@ const ApplicationForm = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      fullName: user?.displayName || state?.form?.fullName || "",
-      email: user?.email || state?.form?.email || "",
+      fullName: user?.displayName || form?.fullName || "",
+      email: user?.email || form?.email || "",
       address: "",
       nid: "",
       nomineeName: "",
@@ -38,14 +39,17 @@ const ApplicationForm = () => {
 
   const mutation = useMutation({
     mutationFn: async (data) => {
-      if (!data.email && state?.form?.email) data.email = state.form.email;
+      if (!data.email && form?.email) data.email = form.email;
 
       const fullData = {
-        ...state?.form,
+        ...form,
         ...data,
+        ...quote,
         status: "Pending",
         submittedAt: new Date().toISOString(),
       };
+
+      console.log(fullData); // debug
 
       const res = await axiosSecure.post("/submit-application", fullData);
       return res.data;
@@ -69,6 +73,18 @@ const ApplicationForm = () => {
         Application Form
       </h2>
 
+      {/* Premium Info Preview */}
+      {quote && (
+        <div className="bg-indigo-50 p-4 rounded border border-indigo-200 text-center">
+          <p>
+            <strong>Monthly Premium:</strong> {quote.monthly} BDT
+          </p>
+          <p>
+            <strong>Annual Premium:</strong> {quote.annual} BDT
+          </p>
+        </div>
+      )}
+
       {/* Full Name */}
       <div>
         <label className="block font-semibold mb-1" htmlFor="fullName">
@@ -85,7 +101,7 @@ const ApplicationForm = () => {
         )}
       </div>
 
-      {/* Email (readonly + required) */}
+      {/* Email */}
       <div>
         <label className="block font-semibold mb-1" htmlFor="email">
           Email <span className="text-red-500">*</span>
@@ -123,7 +139,7 @@ const ApplicationForm = () => {
         )}
       </div>
 
-      {/* NID Number */}
+      {/* NID */}
       <div>
         <label className="block font-semibold mb-1" htmlFor="nid">
           NID Number <span className="text-red-500">*</span>
@@ -131,7 +147,7 @@ const ApplicationForm = () => {
         <input
           id="nid"
           {...register("nid", {
-            required: "NID Number is required (10 to 17) not space",
+            required: "NID Number is required (10 to 17 digits) not space",
             pattern: {
               value: /^[0-9]{10,17}$/,
               message: "NID must be 10 to 17 digits",
@@ -148,7 +164,6 @@ const ApplicationForm = () => {
       {/* Nominee Info */}
       <div>
         <h3 className="font-semibold mb-2">Nominee Information</h3>
-
         <label className="block mb-1" htmlFor="nomineeName">
           Nominee Name <span className="text-red-500">*</span>
         </label>
@@ -167,11 +182,11 @@ const ApplicationForm = () => {
         </label>
         <input
           id="nomineeRelation"
-          {...register("nomineeRelation", { required: "Relationship is required" })}
+          {...register("nomineeRelation", {
+            required: "Relationship is required",
+          })}
           placeholder="Relationship"
-          className={`input w-full ${
-            errors.nomineeRelation ? "input-error" : ""
-          }`}
+          className={`input w-full ${errors.nomineeRelation ? "input-error" : ""}`}
         />
         {errors.nomineeRelation && (
           <p className="text-red-600 text-sm mt-1">{errors.nomineeRelation.message}</p>
@@ -208,7 +223,7 @@ const ApplicationForm = () => {
         )}
       </div>
 
-      {/* Submit Button */}
+      {/* Submit */}
       <button
         type="submit"
         disabled={mutation.isLoading}

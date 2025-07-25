@@ -113,7 +113,12 @@ const QuotePage = () => {
             Annual Premium: <span className="font-bold">{quote.annual} BDT</span>
           </p>
           <button
-            onClick={() => navigate("/application-form", { state: { form } })}
+            onClick={() => navigate("/application-form", { 
+              state: { 
+                form ,
+                quote,
+              } 
+            })}
             className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-6 rounded-md transition duration-300"
           >
             Apply for Policy
