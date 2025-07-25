@@ -1,83 +1,90 @@
-// PaymentForm.jsx
-// import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-// import { useEffect, useState } from "react";
-// import useAxiosSecure from "../../hooks/useAxiosSecure";
-// import { toast } from "react-toastify";
+import React, { useState } from "react";
+import {
+  CardElement,
+  useStripe,
+  useElements,
+} from "@stripe/react-stripe-js";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
-// const PaymentForm = ({ policy }) => {
-//   const [clientSecret, setClientSecret] = useState("");
-//   const [transactionId, setTransactionId] = useState("");
-//   const stripe = useStripe();
-//   const elements = useElements();
-//   const axiosSecure = useAxiosSecure();
+const PaymentForm = ({ close, policy }) => {
+  const stripe = useStripe();
+  const elements = useElements();
+  const axiosSecure = useAxiosSecure()
 
-//   if (!policy) {
-//     return <p className="text-center text-red-500 mt-10">No policy data available!</p>;
-//   }
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
 
-//   const { premium, _id } = policy;
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  setError(null);
 
-//   useEffect(() => {
-//     if (premium) {
-//       axiosSecure
-//         .post("/create-payment-intent", { premium })
-//         .then((res) => setClientSecret(res.data.clientSecret))
-//         .catch(() => toast.error("Failed to initialize payment"));
-//     }
-//   }, [premium, axiosSecure]);
+  if (!stripe || !elements) return;
 
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     if (!stripe || !elements) return;
+  const card = elements.getElement(CardElement);
 
-//     const card = elements.getElement(CardElement);
-//     if (!card) return;
+  try {
+    const res = await axiosSecure.post("/create-payment-intent", {
+      amount: policy.monthly * 100,
+    });
+    const clientSecret = res.data.clientSecret;
 
-//     const { error, paymentMethod } = await stripe.createPaymentMethod({
-//       type: "card",
-//       card,
-//     });
+    const { error, paymentIntent } = await stripe.confirmCardPayment(
+      clientSecret,
+      { payment_method: { card } }
+    );
 
-//     if (error) {
-//       toast.error(error.message);
-//       return;
-//     }
+    if (error) {
+      setError(error.message);
+    } else if (paymentIntent.status === "succeeded") {
+      setSuccess(true);
+    }
+  } catch (err) {
+    setError("Payment failed");
+  }
 
-//     const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
-//       payment_method: paymentMethod.id,
-//     });
+  setLoading(false);
+};
 
-//     if (confirmError) {
-//       toast.error(confirmError.message);
-//       return;
-//     }
 
-//     if (paymentIntent.status === "succeeded") {
-//       setTransactionId(paymentIntent.id);
+  if (success)
+    return (
+      <div className="text-green-600 text-center font-semibold">
+        ✅ Payment Successful!
+        <button
+          onClick={close}
+          className="block mx-auto mt-4 text-blue-600 underline"
+        >
+          Close
+        </button>
+      </div>
+    );
 
-//       const res = await axiosSecure.patch(`/policies/payment/${_id}`, {
-//         transactionId: paymentIntent.id,
-//       });
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <CardElement className=" p-3 rounded bg-white" />
+      {error && <div className="text-red-600">{error}</div>}
 
-//       if (res.data.modifiedCount > 0) {
-//         toast.success("✅ Payment successful & policy activated!");
-//       }
-//     }
-//   };
+      <div className="flex justify-between gap-2 py-2">
+        <button
+          type="submit"
+          disabled={!stripe || loading}
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          {loading ? "Processing..." : "Pay Now"}
+        </button>
 
-  // return (
-    // <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto mt-10 bg-white p-6 rounded shadow">
-    //   <CardElement className="border p-3 rounded" />
-    //   <button
-    //     type="submit"
-    //     disabled={!stripe || !clientSecret}
-    //     className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"
-    //   >
-    //     Pay ${premium}
-    //   </button>
-    //   {transactionId && <p className="text-green-500">Transaction ID: {transactionId}</p>}
-    // </form>
-//   );
-// };
+        <button
+          type="button"
+          onClick={close}
+          className=" hover:text-red-600 bg-gray-400 text-white px-4 py-2 rounded"
+        >
+          ✖ Cancel
+        </button>
+      </div>
+    </form>
+  );
+};
 
-// export default PaymentForm;
+export default PaymentForm;

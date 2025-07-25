@@ -2,12 +2,14 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 const MyPolicies = () => {
   const [reviewModalOpen, setReviewModalOpen] = useState(false);
   const [selectedPolicy, setSelectedPolicy] = useState(null);
   const [rating, setRating] = useState(0);
   const [feedback, setFeedback] = useState("");
+  const {user} = useAuth()
 
   // Fetch user policies
   const { data: policies = [], isLoading, isError, refetch } = useQuery({
@@ -17,7 +19,7 @@ const MyPolicies = () => {
       return res.data;
     },
   });
-
+console.log(policies)
   // Open review modal with selected policy
   const openReviewModal = (policy) => {
     setSelectedPolicy(policy);
@@ -40,6 +42,7 @@ const MyPolicies = () => {
           policyId: selectedPolicy._id,
           rating,
           feedback,
+          userEmail: user?.email,
         },
         { withCredentials: true }
       );
@@ -90,7 +93,7 @@ const MyPolicies = () => {
               </td>
               <td className="border border-gray-300 p-2">{policy.coverage || "-"}</td>
               <td className="border border-gray-300 p-2">{policy.duration || "-"}</td>
-              <td className="border border-gray-300 p-2">{policy.premium || "-"}</td>
+              <td className="border border-gray-300 p-2">{policy.monthly || "-"}</td>
               <td className="border border-gray-300 p-2">
                 <button
                   onClick={() => openReviewModal(policy)}

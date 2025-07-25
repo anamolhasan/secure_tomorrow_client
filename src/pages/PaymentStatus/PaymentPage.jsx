@@ -1,32 +1,31 @@
-// PaymentPage.jsx
-// import { useParams } from "react-router";
-// import { useQuery } from "@tanstack/react-query";
-// import useAxiosSecure from "../../hooks/useAxiosSecure";
-// import PaymentForm from "./PaymentForm";
+// import { useState } from "react";
+import { Elements } from "@stripe/react-stripe-js";
+import PaymentForm from "./PaymentForm";
+// import { Dialog, DialogPanel, DialogTitle, Description } from "@headlessui/react";
 
-const PaymentPage = () => {
-  // const { id } = useParams();
-  // const axiosSecure = useAxiosSecure();
-
-  // console.log("Policy ID from URL:", id); // debug
-
-  // const { data: policy, isLoading, isError } = useQuery({
-  //   queryKey: ['policy', id],
-  //   queryFn: async () => {
-  //     if (!id) throw new Error("No ID provided");
-  //     const res = await axiosSecure.get(`/policies/${id}`);
-  //     return res.data;
-  //   },
-  //   enabled: !!id,
-  // });
-
-  // if (isLoading) return <p className="text-center mt-10">Loading...</p>;
-  // if (isError || !policy) return <p className="text-center mt-10 text-red-500">Failed to load policy data.</p>;
+const PaymentPage = ({ stripePromise }) => {
+  // const [isOpen, setIsOpen] = useState(false); // ডায়ালগ খোলা থাকবে শুরুতেই
 
   return (
     <div className="min-h-screen bg-gray-50 py-10">
-      {/* <h2 className="text-2xl font-bold text-center mb-6">Complete Your Payment</h2>
-      <PaymentForm policy={policy} /> */}
+      {/* <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-10">
+        <div className="fixed inset-0 z-10 w-screen overflow-y-auto bg-black bg-opacity-30 backdrop-blur-sm">
+          <div className="flex min-h-full items-center justify-center p-4">
+            <DialogPanel className="w-full max-w-3xl bg-white p-8 rounded-2xl shadow-xl">
+              <DialogTitle className="text-3xl font-bold text-center text-gray-900 mb-4">
+                পেমেন্ট করুন
+              </DialogTitle>
+              <Description className="text-center text-gray-600 mb-6">
+                আপনার প্রিমিয়াম প্রদানের জন্য নিচের ফর্মটি পূরণ করুন।
+              </Description> */}
+
+              <Elements stripe={stripePromise}>
+                <PaymentForm />
+              </Elements>
+            {/* </DialogPanel> */}
+          {/* </div>
+        </div> */}
+      {/* </Dialog> */}
     </div>
   );
 };
