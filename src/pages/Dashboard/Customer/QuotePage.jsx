@@ -102,7 +102,7 @@ const QuotePage = () => {
           {quoteMutation.isLoading ? "Calculating..." : "Estimate Premium"}
         </button>
       </div>
-
+ 
       {quote && (
         <div className="mt-8 bg-indigo-50 border border-indigo-300 p-6 rounded-md text-center">
           <h3 className="text-xl font-semibold mb-4 text-indigo-700">Estimated Premium</h3>

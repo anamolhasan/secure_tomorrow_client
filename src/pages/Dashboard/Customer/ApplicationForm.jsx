@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
 
 const healthOptions = [
   { label: "Diabetes", value: "diabetes" },
@@ -14,6 +15,7 @@ const healthOptions = [
 ];
 
 const ApplicationForm = () => {
+  const { user } = useAuth();
   const { state } = useLocation();
   const axiosSecure = useAxiosSecure();
 
@@ -24,8 +26,8 @@ const ApplicationForm = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      fullName: state?.form?.fullName || "",
-      email: state?.form?.email || "",
+      fullName: user?.displayName || state?.form?.fullName || "",
+      email: user?.email || state?.form?.email || "",
       address: "",
       nid: "",
       nomineeName: "",
@@ -36,10 +38,8 @@ const ApplicationForm = () => {
 
   const mutation = useMutation({
     mutationFn: async (data) => {
-      // add email from state if not present
       if (!data.email && state?.form?.email) data.email = state.form.email;
 
-      // add status and submission time
       const fullData = {
         ...state?.form,
         ...data,
@@ -58,7 +58,6 @@ const ApplicationForm = () => {
     },
   });
 
-  // Watch healthInfo for disabling "None" if others checked
   const selectedHealth = watch("healthInfo") || [];
 
   return (
@@ -79,27 +78,30 @@ const ApplicationForm = () => {
           id="fullName"
           {...register("fullName", { required: "Full Name is required" })}
           placeholder="Full Name"
-          className={`input w-full ${
-            errors.fullName ? "input-error" : ""
-          }`}
+          className={`input w-full ${errors.fullName ? "input-error" : ""}`}
         />
         {errors.fullName && (
           <p className="text-red-600 text-sm mt-1">{errors.fullName.message}</p>
         )}
       </div>
 
-      {/* Email (readonly) */}
+      {/* Email (readonly + required) */}
       <div>
         <label className="block font-semibold mb-1" htmlFor="email">
-          Email
+          Email <span className="text-red-500">*</span>
         </label>
         <input
           id="email"
-          {...register("email")}
+          {...register("email", { required: "Email is required" })}
           placeholder="Email"
-          // readOnly
-          className="input w-full bg-gray-100 "
+          readOnly
+          className={`input w-full bg-gray-100 cursor-not-allowed ${
+            errors.email ? "input-error" : ""
+          }`}
         />
+        {errors.email && (
+          <p className="text-red-600 text-sm mt-1">{errors.email.message}</p>
+        )}
       </div>
 
       {/* Address */}
@@ -129,16 +131,14 @@ const ApplicationForm = () => {
         <input
           id="nid"
           {...register("nid", {
-            required: "NID Number is required",
+            required: "NID Number is required (10 to 17) not space",
             pattern: {
               value: /^[0-9]{10,17}$/,
               message: "NID must be 10 to 17 digits",
             },
           })}
           placeholder="NID Number"
-          className={`input w-full ${
-            errors.nid ? "input-error" : ""
-          }`}
+          className={`input w-full ${errors.nid ? "input-error" : ""}`}
         />
         {errors.nid && (
           <p className="text-red-600 text-sm mt-1">{errors.nid.message}</p>
@@ -156,9 +156,7 @@ const ApplicationForm = () => {
           id="nomineeName"
           {...register("nomineeName", { required: "Nominee Name is required" })}
           placeholder="Nominee Name"
-          className={`input w-full ${
-            errors.nomineeName ? "input-error" : ""
-          }`}
+          className={`input w-full ${errors.nomineeName ? "input-error" : ""}`}
         />
         {errors.nomineeName && (
           <p className="text-red-600 text-sm mt-1">{errors.nomineeName.message}</p>
@@ -182,7 +180,9 @@ const ApplicationForm = () => {
 
       {/* Health Disclosure */}
       <div>
-        <h3 className="font-semibold mb-2">Health Disclosure <span className="text-red-500">*</span></h3>
+        <h3 className="font-semibold mb-2">
+          Health Disclosure <span className="text-red-500">*</span>
+        </h3>
         <div className="grid grid-cols-2 gap-2">
           {healthOptions.map(({ label, value }) => (
             <label key={value} className="inline-flex items-center space-x-2">
@@ -194,9 +194,9 @@ const ApplicationForm = () => {
                     val.length > 0 || "Please select at least one health option",
                 })}
                 disabled={
-                  value === "none" && selectedHealth.length > 0 && !selectedHealth.includes("none")
-                    ? true
-                    : false
+                  value === "none" &&
+                  selectedHealth.length > 0 &&
+                  !selectedHealth.includes("none")
                 }
               />
               <span>{label}</span>
@@ -208,6 +208,7 @@ const ApplicationForm = () => {
         )}
       </div>
 
+      {/* Submit Button */}
       <button
         type="submit"
         disabled={mutation.isLoading}
