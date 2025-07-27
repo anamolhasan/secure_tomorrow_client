@@ -44,5 +44,5 @@ A full-stack **MERN**-based Life Insurance Management Platform with **Role-based
 
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/your-username/insurance-platform.git
-   cd insurance-platform
+   git clone https://github.com/Programming-Hero-Web-Course4/b11a12-server-side-anamolhasan
+   
