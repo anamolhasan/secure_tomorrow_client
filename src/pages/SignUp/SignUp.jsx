@@ -18,6 +18,26 @@ const SignUp = () => {
 
      const image = form?.image?.files[0]
 
+      // Password validation
+  const uppercasePattern = /[A-Z]/;
+  const lowercasePattern = /[a-z]/;
+
+  if (password.length < 6) {
+    toast.error("Password must be at least 6 characters long");
+    return;
+  }
+
+  if (!uppercasePattern.test(password)) {
+    toast.error("Password must contain at least one uppercase letter");
+    return;
+  }
+
+  if (!lowercasePattern.test(password)) {
+    toast.error("Password must contain at least one lowercase letter");
+    return;
+  }
+
+
     // image url response from imgbb
     const imageUrl = await imageUpload(image)
 
