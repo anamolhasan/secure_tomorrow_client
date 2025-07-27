@@ -45,4 +45,6 @@ A full-stack **MERN**-based Life Insurance Management Platform with **Role-based
 1. Clone the repository:  
    ```bash
    git clone https://github.com/Programming-Hero-Web-Course4/b11a12-server-side-anamolhasan
+
+   https://github.com/Programming-Hero-Web-Course4/b11a12-client-side-anamolhasan?tab=readme-ov-file#-folder-structure
    
