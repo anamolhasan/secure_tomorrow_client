@@ -10,7 +10,7 @@ const FeaturedAgents = () => {
       return res.data;
     },
   });
-
+console.log(agents)
   if (isLoading) return <p>Loading agents...</p>;
   if (isError) return <p>Failed to load agents.</p>;
 
@@ -21,19 +21,21 @@ const FeaturedAgents = () => {
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {agents.map((agent) => (
-          <div key={agent._id} className="bg-white p-6 rounded-2xl shadow-md text-center">
-            <img
-              src={agent.photoURL || "https://i.ibb.co/2kR1Bcg/default-user.png"}
-              alt={agent.name}
-              className="w-28 h-28 rounded-full mx-auto object-cover mb-4"
-            />
-            <h3 className="text-xl font-semibold">{agent.name}</h3>
-            <p className="text-gray-600">{agent.experience || "Experience info not provided"}</p>
-            <p className="text-gray-500 text-sm mt-2">
-              {agent.specialties?.join(", ") || "Specialties not specified"}
-            </p>
-          </div>
-        ))}
+  <div key={agent._id} className="bg-white p-6 rounded-2xl shadow-md text-center">
+    <img
+      src={agent.image  || "https://i.ibb.co/2kR1Bcg/default-user.png"}
+      alt={agent.name}
+      className="w-28 h-28 rounded-full mx-auto object-cover mb-4"
+    />
+    <h3 className="text-xl font-semibold">{agent.name}</h3>
+    <p className="text-gray-600">{agent.email || "Email not available"}</p>
+    <p className="text-gray-600">{agent.experience || "Experience info not provided"}</p>
+    <p className="text-gray-500 text-sm mt-2">
+      {agent.specialties?.join(", ") || "Specialties not specified"}
+    </p>
+  </div>
+))}
+
       </div>
     </section>
   );

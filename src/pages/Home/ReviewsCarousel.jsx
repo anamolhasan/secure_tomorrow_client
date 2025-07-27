@@ -12,7 +12,7 @@ const ReviewsCarousel = () => {
       setReviews(res.data.slice(0, 5)); // সর্বোচ্চ ৫টা রিভিউ নেবে
     });
   }, []);
-
+console.log(reviews)
   const settings = {
     dots: true,
     infinite: true,

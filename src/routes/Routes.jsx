@@ -63,20 +63,15 @@ export const router = createBrowserRouter([
       },
       {
         path: "/get-quote/:id",
-        element: <QuotePage />,
+        element: <PrivateRoute>
+          <QuotePage />
+        </PrivateRoute>,
       },
       {
         path: "/application-form",
         element: <ApplicationForm />,
       },
-      // {
-      //   path: '/FAQs',
-      //   element: <Blog />
-      // },
-      // {
-      //   path: '/plant/:id',
-      //   element: <PlantDetails />,
-      // },
+     
     ],
   },
   { path: "/login", element: <Login /> },
@@ -180,10 +175,7 @@ export const router = createBrowserRouter([
         path: "ClaimRequestPage",
         element: <ClaimRequestPage />
       },
-      // {
-      //   path: "payment-page",
-      //   element: <PaymentPage />
-      // },
+      
     ],
   },
 ]); 

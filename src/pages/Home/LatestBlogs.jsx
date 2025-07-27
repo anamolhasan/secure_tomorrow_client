@@ -8,7 +8,7 @@ const LatestBlogs = () => {
   const { data: blogs = [], isLoading } = useQuery({
     queryKey: ['latestBlogs'],
     queryFn: async () => {
-      const res = await axiosPublic.get('/blogs');
+      const res = await axiosPublic.get('/blogs-public');
       return res.data.slice(-4).reverse(); // সর্বশেষ ৪টি
     }
   });

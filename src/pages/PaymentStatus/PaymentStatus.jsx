@@ -42,7 +42,7 @@ const PaymentStatus = () => {
   return (
     <div className="max-w-6xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6 text-center text-blue-700">
-        পেমেন্ট স্ট্যাটাস
+        payment status
       </h1>
 
       {policies.length === 0 && <p>No approved policies found.</p>}
