@@ -23,7 +23,7 @@ const AddBlog = () => {
       visits: 0,
     };
 
-    const res = await fetch(import.meta.env.VITE_API_URL, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/blogs`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -9,11 +9,11 @@ const Blogs = () => {
   const { data: blogs = [], isLoading } = useQuery({
     queryKey: ['blogs'],
     queryFn: async () => {
-      const res = await axiosSecure.get('/blogs');
+      const res = await axiosSecure.get('/blogs-public');
       return res.data;
     },
   });
-// console.log(blogs)
+console.log(blogs)
   if (isLoading) return <p className="text-center py-10">Loading...</p>;
 
   return (
