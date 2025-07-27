@@ -1,57 +1,48 @@
-# 🛡️ Secure Tomorrow – Life Insurance Management Platform
+# Life Insurance Management Platform
 
-A full-stack MERN web application designed to streamline life insurance policy management. Includes role-based dashboards, policy booking, claims, Stripe integration, and an admin control panel.
+A full-stack **MERN**-based Life Insurance Management Platform with **Role-based Authentication, Secure Payments, and Dynamic Policy Management**.
 
-## 🔗 Live Website
-[👉 Visit Live](https://your-deployed-site-url.com)
+## Live Site
+🔗 [Live Demo](https://tomorrow-130f9.web.app/)
 
-## 🚀 Features
+## Admin Login Credentials
+- **Email:** hasans@hasan.com  
+- **Password:**  aA1234 
 
-### 👤 Authentication
-- Firebase Auth (Email/Password, Google)
-- Role-based login: Admin, Agent, Customer
-- JWT-based secure API calls
+(Use the above credentials to log in as an Admin.)
 
-### 🧭 Navigation
-- Responsive Navbar & Footer
-- Protected routes for dashboard access
-- 404 Page Not Found
+---
 
-### 🏢 Role-based Dashboards
-- **Admin**:
-  - Manage Policies, Users, Blogs, Applications, Claims, Transactions
-  - Assign agents, Approve/Reject applications
-- **Agent**:
-  - View assigned applications
-  - Approve or reject claim requests
-- **Customer**:
-  - View available policies
-  - Purchase via Stripe
-  - Request for claims
+## Features
 
-### 💳 Stripe Integration
-- Seamless payment system
-- Updates policy status on success
-- Stores transaction info in database
+1. **Role-based Authentication** (Admin, Agent, User) using Firebase + JWT for secure login and route protection.  
+2. **Secure API Integration** with Axios (credentials included) and protected routes for sensitive data.  
+3. **Dynamic Policy Listing** with backend-powered filtering (by category) and pagination (9 per page).  
+4. **Policy Details Page** with images, category, full description, and premium-related details.  
+5. **Quote Calculator Page** – Users can estimate life insurance premiums based on age, gender, coverage, smoker status, and duration.  
+6. **Application Form Page** – Users can submit personal, nominee, and health details for insurance applications (default `Pending` status).  
+7. **Stripe Payment Integration** for secure online premium payments.  
+8. **Admin Dashboard** – Admins can approve/reject user applications, manage policies, and view transactions.  
+9. **Agent Dashboard** – Agents can track assigned clients and monitor sales performance.  
+10. **User Dashboard** – Users can view policies, track application status, and manage payments.  
+11. **Responsive UI** with custom design, optimized for both mobile and desktop.  
+12. **Notifications & Alerts** using SweetAlert2 and Toastify for smooth user feedback.  
+13. **Secure Backend** – JWT-based middleware ensures only authorized users can access private endpoints.  
+14. **Modern Tech Stack** – React, Node.js, Express.js, MongoDB, Firebase, TanStack Query, Stripe.  
 
-### 📦 Policy Management
-- CRUD for Policies (Admin)
-- Policy purchase with auto-filled info
-- Application status handling
-- Claim request feature with PDF/image upload
+---
 
-### 📈 Tech Stack
-- **Frontend**: React 19, React Router v7, Tailwind CSS 4, DaisyUI
-- **Backend**: Node.js, Express.js, MongoDB, Stripe
-- **State Management**: React Query
-- **Notifications**: SweetAlert2, React Toastify
-- **Dev Tools**: Vite, ESLint
+## Tech Stack
+- **Frontend:** React, Tailwind CSS, TanStack Query, Firebase Auth  
+- **Backend:** Node.js, Express.js, MongoDB, JWT  
+- **Payments:** Stripe Integration  
+- **Hosting:** Vercel (Frontend) & Render (Backend)
 
-### 🎯 UX/UI Expectations Fulfilled
-- No `Lorem Ipsum` anywhere
-- Used SweetAlert2 / Toast for all interactions
-- Dynamic page titles with `react-helmet-async`
-- Fully responsive across devices
+---
 
-## 📁 Folder Structure
+## How to Run Locally
 
+1. Clone the repository:  
+   ```bash
+   git clone https://github.com/your-username/insurance-platform.git
+   cd insurance-platform
