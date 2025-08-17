@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import avatarImg from "../../../assets/images/placeholder.jpg";
-// import logo from "../../../assets/images/logo-flat.png";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -22,12 +21,11 @@ const Navbar = () => {
               </div>
             </Link>
 
-            {/* Middle Links */}
-            <div className="space-x-5">
+            {/* Middle Links (hidden on mobile) */}
+            <div className="hidden md:flex space-x-5">
               <NavLink className="font-bold" to={"/"}>Home</NavLink>
               <NavLink className="font-bold" to={"/all-policy"}>All Policy</NavLink>
               <NavLink className="font-bold" to={"/blog"}>Blog</NavLink>
-           
             </div>
 
             {/* Dropdown Menu */}
@@ -36,9 +34,9 @@ const Navbar = () => {
                 {/* Dropdown btn */}
                 <div
                   onClick={() => setIsOpen(!isOpen)}
-                  className="p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
+                  className="p-3 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-2 rounded-full cursor-pointer hover:shadow-md transition"
                 >
-                  <AiOutlineMenu />
+                  <AiOutlineMenu className="text-lg" />
                   <div className="hidden md:block">
                     <img
                       className="rounded-full"
@@ -52,14 +50,28 @@ const Navbar = () => {
                 </div>
               </div>
 
+              {/* Dropdown Items */}
               {isOpen && (
-                <div className="absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm">
+                <div className="absolute rounded-xl shadow-md w-[60vw] md:w-[12vw] bg-white overflow-hidden right-0 top-12 text-sm">
                   <div className="flex flex-col cursor-pointer">
+                    {/* Show all links in mobile dropdown */}
                     <Link
                       to="/"
                       className="block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold"
                     >
                       Home
+                    </Link>
+                    <Link
+                      to="/all-policy"
+                      className="block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold"
+                    >
+                      All Policy
+                    </Link>
+                    <Link
+                      to="/blog"
+                      className="block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold"
+                    >
+                      Blog
                     </Link>
 
                     {user ? (

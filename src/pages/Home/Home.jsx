@@ -5,6 +5,11 @@ import NewsletterForm from "./NewsletterForm"
 import PopularPolicies from "./PopularPolicies"
 import ReviewsCarousel from "./ReviewsCarousel"
 import FeaturedAgents from "./FeaturedAgents"
+import InsurancePlans from "./InsurancePlans"
+import WhyChooseUs from "./WhyChooseUs"
+import Partners from "./Partners"
+import SuccessStats from "./SuccessStats"
+import FAQ from "./FAQ"
 
 
 const Home = () => {
@@ -17,6 +22,11 @@ const Home = () => {
       <PopularPolicies />
       <ReviewsCarousel />
      <LatestBlogs />
+     <InsurancePlans />
+     <WhyChooseUs />
+     <Partners />
+     <SuccessStats />
+     <FAQ />
      <NewsletterForm />
      <FeaturedAgents />
     </div>
